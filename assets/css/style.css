@@ -752,7 +752,7 @@ body {
         height: 74px;
         margin-left: -43px;
         margin-top: -52px;
-        background-image: url(../img/icons/btdesign.png);
+        background-image: url(../img/icons/btdesign.svg);
         background-size: 86px 59px;
         background-repeat: no-repeat;
     }
@@ -766,7 +766,7 @@ body {
         height: 95px;
         margin-left: -26px;
         margin-top: -58px;
-        background-image: url(../img/icons/customise.png);
+        background-image: url(../img/icons/customise.svg);
         background-size: 69px 70px;
         background-repeat: no-repeat;
     }
@@ -780,7 +780,7 @@ body {
         height: 83px;
         margin-left: -36px;
         margin-top: -58px;
-        background-image: url(../img/icons/free.png);
+        background-image: url(../img/icons/free.svg);
         background-size: 68px 68px;
         background-repeat: no-repeat;
     }
