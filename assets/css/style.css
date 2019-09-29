@@ -131,7 +131,7 @@ body {
     top: 2px;
     width: 21px;
     height: 19px;
-    background-image: url("../img/icons/about.png");
+    background-image: url("../img/icons/about.svg");
 }
 
 .nav .services::before {
@@ -141,7 +141,7 @@ body {
     top: 2px;
     width: 19px;
     height: 19px;
-    background-image: url("../img/icons/services.png");
+    background-image: url("../img/icons/services.svg");
 }
 
 .nav .contact::before {
@@ -151,7 +151,7 @@ body {
     left: 18px;
     width: 24px;
     height: 18px;
-    background-image: url("../img/icons/mail.png");
+    background-image: url("../img/icons/mail.svg");
 }
 
 /* !!!!!!!!!!!!!!!!!! */
@@ -301,7 +301,7 @@ body {
     height: 74px;
     margin-left: -57px;
     margin-top: -47px;
-    background-image: url("../img/icons/btdesign.png");
+    background-image: url("../img/icons/btdesign.svg");
 }
 
 .features .cusomise::before {
@@ -313,7 +313,7 @@ body {
     height: 95px;
     margin-left: -35px;
     margin-top: -70px;
-    background-image: url("../img/icons/customise.png");
+    background-image: url("../img/icons/customise.svg");
 }
 
 .features .free-icons::before {
@@ -325,7 +325,7 @@ body {
     height: 83px;
     margin-left: -50px;
     margin-top: -53px;
-    background-image: url("../img/icons/free.png");
+    background-image: url("../img/icons/free.svg");
 }
 
 /* !!!!!!!!!!!!!!!!!!!! */
