@@ -1,7 +1,7 @@
 let arrEng = [
-    [["eng"], ["\`", "Backquote", "~"], ["1", "Digit1", "!"], ["2", "Digit2", "@"], ["3", "Digit3", "#"], ["4", "Digit4", "$"], ["5", "Digit5", "%"], ["6", "Digit6", "^"], ["7", "Digit7", "&"], ["8", "Digit8", "*"], ["9", "Digit9", "("], ["0", "Digit0", ")"], ["-", "Minus", "_"], ["=", "Equal", "+"], ["Backspace", "Backspace"]],
+    [["eng"], ["`", "Backquote", "~"], ["1", "Digit1", "!"], ["2", "Digit2", "@"], ["3", "Digit3", "#"], ["4", "Digit4", "$"], ["5", "Digit5", "%"], ["6", "Digit6", "^"], ["7", "Digit7", "&"], ["8", "Digit8", "*"], ["9", "Digit9", "("], ["0", "Digit0", ")"], ["-", "Minus", "_"], ["=", "Equal", "+"], ["Backspace", "Backspace"]],
     [["Tab", "Tab"], ["q", "KeyQ", "Q"], ["w", "KeyW", "W"], ["e", "KeyE", "E"], ["r", "KeyR", "R"], ["t", "KeyT", "T"], ["y", "KeyY", "Y"], ["u", "KeyU", "U"], ["i", "KeyI", "I"], ["o", "KeyO", "O"], ["p", "KeyP", "P"], ["[", "BracketLeft", "{"], ["]", "BracketRight", "}"], ["\\", "Backslash", "|"]],
-    [["CapsLock", "CapsLock"], ["a", "KeyA", "A"], ["s", "KeyS", "S"], ["d", "KeyD", "D"], ["f", "KeyF", "F"], ["g", "KeyG", "G"], ["h", "KeyH", "H"], ["j", "KeyJ", "J"], ["k", "KeyK", "K"], ["l", "KeyL", "L"], [";", "Semicolon", ":"], ["\'", "Quote", "\""], ["Enter", "Enter"]],
+    [["CapsLock", "CapsLock"], ["a", "KeyA", "A"], ["s", "KeyS", "S"], ["d", "KeyD", "D"], ["f", "KeyF", "F"], ["g", "KeyG", "G"], ["h", "KeyH", "H"], ["j", "KeyJ", "J"], ["k", "KeyK", "K"], ["l", "KeyL", "L"], [";", "Semicolon", ":"], ["'", "Quote", "\""], ["Enter", "Enter"]],
     [["Shift", "ShiftLeft"], ["z", "KeyZ", "Z"], ["x", "KeyX", "X"], ["c", "KeyC", "C"], ["v", "KeyV", "V"], ["b", "KeyB", "B"], ["n", "KeyN", "N"], ["m", "KeyM", "M"], [",", "Comma", "<"], [".", "Period", ">"], ["/", "Slash", "?"], ["Shift", "ShiftRight"], ["arrUp", "ArrowUp"]],
     [["Ctrl", "ControlLeft"], ["Win", "MetaLeft"], ["Alt", "AltLeft"], ["Space", "Space"], ["Alt", "AltRight"], ["Cnt", "ContextMenu"], ["Ctrl", "ControlRight"], ["arrLeft", "ArrowLeft"], ["arrDown", "ArrowDown"], ["arrRight", "ArrowRight"]]
 ];
@@ -14,23 +14,35 @@ let arrRus = [
     [["Ctrl", "ControlLeft"], ["Win", "MetaLeft"], ["Alt", "AltLeft"], ["Space", "Space"], ["Alt", "AltRight"], ["Cnt", "ContextMenu"], ["Ctrl", "ControlRight"], ["arrLeft", "ArrowLeft"], ["arrDown", "ArrowDown"], ["arrRight", "ArrowRight"]]
 ];
 
-let ignoreChar = ["Backspace", "Enter", "CapsLock", "Shift", "Ctrl", "Tab", "Alt", "ContextMenu", "Space", "Win", "Cnt", "Control", "Meta"];
+let ignoreChar = ["Backspace", "Enter", "CapsLock", "Shift", "Ctrl", "Tab", "Alt", "ContextMenu", " ", "Win", "Cnt", "Control", "Meta", "Space"];
 
 let textNote = document.createElement("textarea");
+let virtKeyboard = document.createElement("div");
+let button = document.createElement("button");
+let body = document.querySelector("body");
+let localTextArea = localStorage.getItem("textarea");
+
 textNote.setAttribute("rows", "15");
 textNote.setAttribute("cols", "100");
 textNote.setAttribute("id", "textNode");
-let body = document.querySelector("body");
+textNote.textContent = JSON.parse(localTextArea);
 body.append(textNote);
 
-let currentState = arrEng;
+virtKeyboard.setAttribute("id", "virtKeyboard");
+virtKeyboard.classList.add("keyboard");
+body.append(virtKeyboard);
+
+button.textContent = "Clear";
+button.style.width = 80 + "px";
+button.style.height = 40 + "px";
+textNote.after(button);
+
+let localSt = localStorage.getItem("currentState");
+let currentState = JSON.parse(localSt) || arrEng;
 function drawKeyboard(arr) {
     currentState = arr;
-    let body = document.querySelector("body");
-    let virtKeyboard = document.createElement("div");
-    virtKeyboard.setAttribute("id", "virtKeyboard");
-    virtKeyboard.classList.add("keyboard");
-    body.append(virtKeyboard);
+    let json = JSON.stringify(arr);
+    localStorage.setItem("currentState", json);
 
     for (let i = 0; i < arr.length; i++) {
         let row = document.createElement("div");
@@ -50,6 +62,9 @@ drawKeyboard(currentState);
 
 function drawKeyboardUpperCase(arr, st) {
     currentState = arr;
+    let json = JSON.stringify(arr);
+    localStorage.setItem("currentState", json);
+
     let span = document.getElementsByTagName("span");
     let iterator = 0;
     for (let i = 0; i < arr.length; i++) {
@@ -83,31 +98,31 @@ function keyBacklight(e) {
         let curr = document.querySelector("." + e.code);
         curr.classList.add("lighter");
     }    
-};
+}
 
 function keyBacklightOff(e) {
     if(e.code === "F5" || e.code === "CapsLock") return;
     let curr = document.querySelector("." + e.code);
     curr.classList.remove("lighter");
-};
+}
 
 virtKeyboard.addEventListener("mousedown", mouseKeyBacklight);
 virtKeyboard.addEventListener("mouseup", mouseKeyBacklightOff);
 virtKeyboard.addEventListener("mouseout", mouseKeyBacklightOff);
 
 function mouseKeyBacklight(e) {
-    if(e.code === "F5") return;
+    if(e.code === "F5" || e.target.tagName != "SPAN") return;
     if(e.target.textContent === "CapsLock") {
         e.target.classList.toggle("lighter");
     } else {
         e.target.classList.add("lighter");
     }    
-};
+}
 
 function mouseKeyBacklightOff(e) {
     if(e.target.textContent === "CapsLock") return;
     e.target.classList.remove("lighter");
-};
+}
 
 ///////////////////////////////
 // Добавление текста в textarea
@@ -117,19 +132,60 @@ document.addEventListener("keyup", textInput);
 virtKeyboard.addEventListener("mouseup", mouseTextInput);
 
 function textInput(e) {
+    let textNode = document.getElementById("textNode");
+    let current = document.querySelector("." + e.code);
     if(e.code === "F5") return;
     if(e.code === "Tab" || e.key === "Alt") e.preventDefault();
     if(checkSymbol(e.key)) {
-        let current = document.querySelector("." + e.code);
-        textNode.innerText = textNode.textContent + current.textContent;
+        textNode.textContent += current.textContent;
+    } else {
+        switch (e.key) {
+            case "Tab":
+                textNode.textContent += "    ";
+                break;
+
+            case "Enter":
+                textNode.innerHTML += "\n";
+                break;
+
+            case " ":
+                textNode.innerHTML += " ";
+                break;
+        
+            default:
+                break;
+        }
     }
-};
+    let json = JSON.stringify(textNode.textContent);
+    localStorage.setItem("textarea", json);
+}
 
 function mouseTextInput(e) {
+    let textNode = document.getElementById("textNode");
+    if(e.target.tagName != "SPAN") return;
     if(checkSymbol(e.target.innerText)) {
-        textNode.innerText = textNode.textContent + e.target.innerText;
+        textNode.textContent += e.target.textContent;
+    } else {
+        switch (e.target.innerText) {
+            case "Tab":
+                textNode.textContent += "    ";
+                break;
+
+            case "Enter":
+                textNode.innerHTML += "\n";
+                break;
+
+            case "Space":
+                textNode.innerHTML += " ";
+                break;
+        
+            default:
+                break;
+        }
     }
-};
+    let json = JSON.stringify(textNode.textContent);
+    localStorage.setItem("textarea", json);
+}
 
 /////////////////////////////////
 // Проверка на символы ignoreChar
@@ -144,7 +200,7 @@ function checkSymbol(symbol) {
         }
     });
     return result;
-};
+}
 
 ////////////////////////////
 // Удаляем символы backspace
@@ -154,6 +210,7 @@ document.addEventListener("keyup", backSpace);
 virtKeyboard.addEventListener("mouseup", backSpace);
 
 function backSpace(e) {
+    let textNode = document.getElementById("textNode");
     if(e.target.textContent === "Backspace") {
         textNode.innerText = textNode.textContent.substr(0, textNode.textContent.length - 1);
     } else if(e.key === "Backspace") {
@@ -172,12 +229,11 @@ function changeKeyboard(e) {
     if(e.altKey) {
         e.preventDefault();
         if (e.ctrlKey && e.altKey) {
-            let virtKeyboard = document.querySelector(".keyboard");
             let arg = currentState[0][0] == "rus" ? arrEng : arrRus;
             drawKeyboardUpperCase(arg, 0);
         }
     }
-};
+}
 
 ////////
 // Shift
@@ -195,7 +251,7 @@ function shiftKey(e) {
     } else if(e.target.textContent == "Shift") {
         drawKeyboardUpperCase(currentState, 2);
     }
-};
+}
 
 function shiftKeyOff(e) {
     if(e.code == "ShiftLeft" || e.code == "ShiftRight") {
@@ -203,7 +259,7 @@ function shiftKeyOff(e) {
     } else if(e.target.textContent == "Shift") {
         drawKeyboardUpperCase(currentState, 0);
     }
-};
+}
 
 ///////////
 // CapsLock
@@ -220,3 +276,18 @@ function capsLockFunc(e) {
         drawKeyboardUpperCase(currentState, 0);
     }
 }
+
+///////////////////////////////////////
+// Очистить чат и localStorage textarea
+///////////////////////////////////////
+
+button.addEventListener("click", clearArea);
+
+function clearArea() {
+    localStorage.removeItem("textarea");
+    textNote.textContent = "";
+}
+
+// document.getElementById('textNode').addEventListener('keyup', e => {
+//     console.log('Caret at: ', e.target.selectionStart)
+// })

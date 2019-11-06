@@ -13,6 +13,11 @@
 }
 
 .lighter {
-    background-color: red;
-    border-radius: 20%;
+    background-color: yellowgreen;
+}
+
+.lighter {
+    border-radius: 30%;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;    
 }
