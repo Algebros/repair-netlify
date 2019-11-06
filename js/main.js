@@ -14,7 +14,12 @@ let arrRus = [
     [["Ctrl", "ControlLeft"], ["Win", "MetaLeft"], ["Alt", "AltLeft"], ["Space", "Space"], ["Alt", "AltRight"], ["Cnt", "ContextMenu"], ["Ctrl", "ControlRight"], ["arrLeft", "ArrowLeft"], ["arrDown", "ArrowDown"], ["arrRight", "ArrowRight"]]
 ];
 
+// кнопки которые не нужно выводить в textarea
 let ignoreChar = ["Backspace", "Enter", "CapsLock", "Shift", "Ctrl", "Tab", "Alt", "ContextMenu", " ", "Win", "Cnt", "Control", "Meta", "Space"];
+
+////////////////////////////////////////////////////////////////////////////
+// Создаем textarea и button очистки textarea, также шаблон самой клавиатуры
+////////////////////////////////////////////////////////////////////////////
 
 let textNote = document.createElement("textarea");
 let virtKeyboard = document.createElement("div");
@@ -37,6 +42,11 @@ button.style.width = 80 + "px";
 button.style.height = 40 + "px";
 textNote.after(button);
 
+
+//////////////////////////////////////////
+// Отрисовка кнопок и наполнение символами
+//////////////////////////////////////////
+
 let localSt = localStorage.getItem("currentState");
 let currentState = JSON.parse(localSt) || arrEng;
 function drawKeyboard(arr) {
@@ -58,9 +68,14 @@ function drawKeyboard(arr) {
         virtKeyboard.append(row);
     }
 }
+// сразу вызываем клавиатуру "по умолчанию"
 drawKeyboard(currentState);
 
-function drawKeyboardUpperCase(arr, st) {
+/////////////////////////////////////////////////////////
+// Меняем регистр букв (только внутренний контент кнопки)
+/////////////////////////////////////////////////////////
+
+function changeCaseButtons(arr, st) {
     currentState = arr;
     let json = JSON.stringify(arr);
     localStorage.setItem("currentState", json);
@@ -230,7 +245,7 @@ function changeKeyboard(e) {
         e.preventDefault();
         if (e.ctrlKey && e.altKey) {
             let arg = currentState[0][0] == "rus" ? arrEng : arrRus;
-            drawKeyboardUpperCase(arg, 0);
+            changeCaseButtons(arg, 0);
         }
     }
 }
@@ -247,17 +262,17 @@ virtKeyboard.addEventListener("mouseup", shiftKeyOff);
 
 function shiftKey(e) {
     if(e.code == "ShiftLeft" || e.code == "ShiftRight") {
-        drawKeyboardUpperCase(currentState, 2);
+        changeCaseButtons(currentState, 2);
     } else if(e.target.textContent == "Shift") {
-        drawKeyboardUpperCase(currentState, 2);
+        changeCaseButtons(currentState, 2);
     }
 }
 
 function shiftKeyOff(e) {
     if(e.code == "ShiftLeft" || e.code == "ShiftRight") {
-        drawKeyboardUpperCase(currentState, 0);
+        changeCaseButtons(currentState, 0);
     } else if(e.target.textContent == "Shift") {
-        drawKeyboardUpperCase(currentState, 0);
+        changeCaseButtons(currentState, 0);
     }
 }
 
@@ -271,9 +286,9 @@ function capsLockFunc(e) {
     let capsLock = document.getElementsByClassName("CapsLock");
     if(e.target != capsLock[0] && e.keyCode != 20) return;
     if(capsLock[0].classList.contains("lighter")) {
-        drawKeyboardUpperCase(currentState, 2);
+        changeCaseButtons(currentState, 2);
     } else {
-        drawKeyboardUpperCase(currentState, 0);
+        changeCaseButtons(currentState, 0);
     }
 }
 
@@ -287,6 +302,8 @@ function clearArea() {
     localStorage.removeItem("textarea");
     textNote.textContent = "";
 }
+
+// нашел шаблон для работы с кареткой в textarea
 
 // document.getElementById('textNode').addEventListener('keyup', e => {
 //     console.log('Caret at: ', e.target.selectionStart)
