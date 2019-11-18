@@ -84,7 +84,7 @@ function defaultPencil() {
 
   canvas.addEventListener('mousedown', startDrawing);
 }
-defaultPencil();
+// defaultPencil();
 pencil.addEventListener('click', defaultPencil);
 
 document.addEventListener('keydown', (event) => {
@@ -201,6 +201,26 @@ async function getLinkToImage() {
     throw new TypeError(e);
   }
 }
+
+function grayScale() {
+  const imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+
+  const px = imgData.data;
+  for (let i = 0, n = px.length; i < n; i += 4) {
+    const arr = px[i] * 0.3 + px[i + 1] * 0.59 + px[i + 2] * 0.11;
+    px[i] = arr;
+    px[i + 1] = arr;
+    px[i + 2] = arr;
+  }
+  context.putImageData(imgData, 0, 0);
+}
+
+blackWhite.addEventListener('click', grayScale);
+
+uploaderButton.addEventListener('click', getLinkToImage);
+
+// ////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////
 
 listSize.addEventListener('click', (event) => {
   if (event.target.tagName === 'LI' && !event.target.classList.contains('checked')) {
