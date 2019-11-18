@@ -93,7 +93,7 @@ function defaultPencil() {
 
   canvas.addEventListener('mousedown', startDrawing);
 }
-// defaultPencil();
+defaultPencil();
 pencil.addEventListener('click', defaultPencil);
 
 document.addEventListener('keydown', (event) => {
@@ -250,3 +250,38 @@ listSize.addEventListener('click', (event) => {
 document.addEventListener('click', () => {
   localStorage.setItem('canvasStorage', canvas.toDataURL());
 });
+
+// function calcStraightLine(startCoordinates, endCoordinates) {
+//   const coordinatesArray = [];
+//   // Translate coordinates
+//   let x1 = startCoordinates[0];
+//   let y1 = startCoordinates[1];
+//   const x2 = endCoordinates[0];
+//   const y2 = endCoordinates[1];
+//   // Define differences and error check
+//   const dx = Math.abs(x2 - x1);
+//   const dy = Math.abs(y2 - y1);
+//   const sx = (x1 < x2) ? 1 : -1;
+//   const sy = (y1 < y2) ? 1 : -1;
+//   let err = dx - dy;
+//   // Set first coordinates
+//   coordinatesArray.push([y1, x1]);
+//   // Main loop
+//   while (!((x1 === x2) && (y1 === y2))) {
+//     const e2 = err << 1;
+//     if (e2 > -dy) {
+//       err -= dy;
+//       x1 += sx;
+//     }
+//     if (e2 < dx) {
+//       err += dx;
+//       y1 += sy;
+//     }
+//     // Set coordinates
+//     coordinatesArray.push([x1, y1]);
+//   }
+//   // Return the result
+//   return coordinatesArray;
+// }
+
+// console.log(calcStraightLine([6, 7], [1, 0]));
