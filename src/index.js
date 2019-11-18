@@ -3,6 +3,15 @@ const context = canvas.getContext('2d');
 canvas.width = 512;
 canvas.height = 512;
 
+const dataURL = localStorage.getItem('canvasStorage');
+if (dataURL !== null) {
+  const img = new Image();
+  img.src = dataURL;
+  img.onload = () => {
+    context.drawImage(img, 0, 0);
+  };
+}
+
 const inputColorCurrent = document.getElementById('colorPicker');
 const pencil = document.getElementById('pencil');
 const bucket = document.getElementById('bucket');
@@ -233,4 +242,11 @@ listSize.addEventListener('click', (event) => {
     cols = canvas.width / event.target.dataset.size;
     rows = canvas.height / event.target.dataset.size;
   }
+});
+
+// ////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////
+
+document.addEventListener('click', () => {
+  localStorage.setItem('canvasStorage', canvas.toDataURL());
 });
