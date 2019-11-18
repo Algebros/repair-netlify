@@ -84,7 +84,7 @@ function defaultPencil() {
 
   canvas.addEventListener('mousedown', startDrawing);
 }
-// defaultPencil();
+defaultPencil();
 pencil.addEventListener('click', defaultPencil);
 
 document.addEventListener('keydown', (event) => {
@@ -175,6 +175,33 @@ canvas.addEventListener('mousemove', recordMouseMovement);
 // ////////////////////////////////////////////////////////
 // ////////////////////////////////////////////////////////
 
+async function getLinkToImage() {
+  const request = uploaderRequest.value;
+  const accessKey = '1f886df6fc660436f9482cbb84261db63a5d25eb846e869c59ae1ba074b5b60f';
+  const url = `https://api.unsplash.com/photos/random?query=${request}&client_id=${accessKey}`;
+
+  let data;
+  try {
+    const response = await fetch(url);
+    data = await response.json();
+    const img = new Image();
+    img.crossOrigin = 'Anonymous';
+    img.src = data.urls.small;
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    img.onload = () => {
+      if (img.width === img.height) {
+        context.drawImage(img, (canvas.width - img.width) / 2, (canvas.width - img.height) / 2);
+      } else if (img.width > img.height) {
+        context.drawImage(img, 0, (canvas.width - img.height) / 2, canvas.width, img.height);
+      } else if (img.width < img.height) {
+        context.drawImage(img, (canvas.width - img.width) / 2, 0, img.width, canvas.height);
+      }
+    };
+  } catch (e) {
+    throw new TypeError(e);
+  }
+}
+
 listSize.addEventListener('click', (event) => {
   if (event.target.tagName === 'LI' && !event.target.classList.contains('checked')) {
     const isCheck = document.querySelector('.checked');
@@ -187,6 +214,3 @@ listSize.addEventListener('click', (event) => {
     rows = canvas.height / event.target.dataset.size;
   }
 });
-
-// ////////////////////////////////////////////////////////
-// ////////////////////////////////////////////////////////
