@@ -15,6 +15,7 @@ const uploaderRequest = document.getElementById('uploaderRequest');
 const uploaderButton = document.getElementById('uploaderButton');
 const cleanerCC = document.getElementById('cleanerCC');
 const listSize = document.querySelector('.list-size');
+const palleteList = document.querySelector('.pallete-list');
 const checked = document.querySelector('.list-size .item.checked');
 
 
@@ -321,4 +322,9 @@ document.addEventListener('click', () => {
 cleanerCC.addEventListener('click', () => {
   localStorage.removeItem('canvasStorage');
   context.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+palleteList.addEventListener('mousedown', (e) => {
+  colorPicker.value = "#" + e.target.dataset.color;
+  pixelColor = "#" + e.target.dataset.color;
 });

@@ -244,7 +244,15 @@ html {
 }
 
 .pallete-list .first {
-    background-color: red;
+    background-color: #ff0000;
+}
+
+.pallete-list .second {
+    background-color: #00ff00;
+}
+
+.pallete-list .third {
+    background-color: #0000ff;
 }
 
 /* .act-list .current-color::before {
