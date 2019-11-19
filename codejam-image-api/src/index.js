@@ -2,7 +2,7 @@ const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 canvas.width = 512;
 canvas.height = 512;
-context.fillStyle = "white";
+context.fillStyle = 'white';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
 const dataURL = localStorage.getItem('canvasStorage');
