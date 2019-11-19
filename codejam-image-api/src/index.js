@@ -28,24 +28,73 @@ let pixelHeight = checked.dataset.size;
 let cols = canvas.width / pixelWidth;
 let rows = canvas.height / pixelHeight;
 let pixelColor = inputColorCurrent.value;
-let mouse = null;
+let mouse = [];
 
 // ////////////////////////////////////////////////////////
 // ////////////////////////////////////////////////////////
 
-function addColor() {
-  if (mouse.y < rows && mouse.x < cols) {
-    context.fillStyle = pixelColor;
-    context.fillRect(mouse.x * pixelWidth, mouse.y * pixelWidth, pixelWidth, pixelWidth);
+function getMousePos(event) {
+  const rect = canvas.getBoundingClientRect();
+  const x = Math.round((event.clientX - rect.left - (pixelWidth / 2)) / pixelWidth);
+  const y = Math.round((event.clientY - rect.top - (pixelHeight / 2)) / pixelHeight);
+  const arr = [x, y];
+  return arr;
+}
+
+function calcStraightLine(startCoordinates, endCoordinates) {
+  const coordinatesArray = [];
+  // Translate coordinates
+  let x1 = startCoordinates[0];
+  let y1 = startCoordinates[1];
+  const x2 = endCoordinates[0];
+  const y2 = endCoordinates[1];
+  // Define differences and error check
+  const dx = Math.abs(x2 - x1);
+  const dy = Math.abs(y2 - y1);
+  const sx = (x1 < x2) ? 1 : -1;
+  const sy = (y1 < y2) ? 1 : -1;
+  let err = dx - dy;
+  // Set first coordinates
+  coordinatesArray.push([x1, y1]);
+  // Main loop
+  while (!((x1 === x2) && (y1 === y2))) {
+    // const e2 = err << 1;
+    const e2 = err * 2;
+    if (e2 > -dy) {
+      err -= dy;
+      x1 += sx;
+    }
+    if (e2 < dx) {
+      err += dx;
+      y1 += sy;
+    }
+    // Set coordinates
+    coordinatesArray.push([x1, y1]);
+  }
+  // Return the result
+  return coordinatesArray;
+}
+
+function render(event) {
+  const current = getMousePos(event);
+  if (current[0] < rows && current[1] < cols) {
+    if (mouse.length === 0) mouse.push(current[0], current[1]);
+    const arr = calcStraightLine([mouse[0], mouse[1]], current);
+    for (let i = 0; i < arr.length; i += 1) {
+      context.fillStyle = pixelColor;
+      context.fillRect(arr[i][0] * pixelWidth, arr[i][1] * pixelWidth, pixelWidth, pixelWidth);
+    }
+    mouse = [current[0], current[1]];
   }
 }
 
 function startDrawing(event) {
   if (event.button === 0) {
-    canvas.addEventListener('mousemove', addColor);
+    canvas.addEventListener('mousemove', render);
 
     canvas.addEventListener('mouseup', () => {
-      canvas.removeEventListener('mousemove', addColor);
+      canvas.removeEventListener('mousemove', render);
+      mouse = [];
     });
   }
 }
@@ -167,19 +216,6 @@ inputColorCurrent.addEventListener('input', watchColorPicker);
 // ////////////////////////////////////////////////////////
 // ////////////////////////////////////////////////////////
 
-function getMousePos(event) {
-  const rect = canvas.getBoundingClientRect();
-  return {
-    x: (Math.round((event.clientX - rect.left - (pixelWidth / 2)) / pixelWidth)),
-    y: (Math.round((event.clientY - rect.top - (pixelHeight / 2)) / pixelHeight)),
-  };
-}
-
-function recordMouseMovement(event) {
-  mouse = getMousePos(event);
-}
-
-canvas.addEventListener('mousemove', recordMouseMovement);
 
 // ////////////////////////////////////////////////////////
 // ////////////////////////////////////////////////////////
@@ -250,38 +286,3 @@ listSize.addEventListener('click', (event) => {
 document.addEventListener('click', () => {
   localStorage.setItem('canvasStorage', canvas.toDataURL());
 });
-
-// function calcStraightLine(startCoordinates, endCoordinates) {
-//   const coordinatesArray = [];
-//   // Translate coordinates
-//   let x1 = startCoordinates[0];
-//   let y1 = startCoordinates[1];
-//   const x2 = endCoordinates[0];
-//   const y2 = endCoordinates[1];
-//   // Define differences and error check
-//   const dx = Math.abs(x2 - x1);
-//   const dy = Math.abs(y2 - y1);
-//   const sx = (x1 < x2) ? 1 : -1;
-//   const sy = (y1 < y2) ? 1 : -1;
-//   let err = dx - dy;
-//   // Set first coordinates
-//   coordinatesArray.push([y1, x1]);
-//   // Main loop
-//   while (!((x1 === x2) && (y1 === y2))) {
-//     const e2 = err << 1;
-//     if (e2 > -dy) {
-//       err -= dy;
-//       x1 += sx;
-//     }
-//     if (e2 < dx) {
-//       err += dx;
-//       y1 += sy;
-//     }
-//     // Set coordinates
-//     coordinatesArray.push([x1, y1]);
-//   }
-//   // Return the result
-//   return coordinatesArray;
-// }
-
-// console.log(calcStraightLine([6, 7], [1, 0]));
