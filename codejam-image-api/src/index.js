@@ -5,15 +5,6 @@ canvas.height = 512;
 context.fillStyle = 'white';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
-const dataURL = localStorage.getItem('canvasStorage');
-if (dataURL !== null) {
-  const img = new Image();
-  img.src = dataURL;
-  img.onload = () => {
-    context.drawImage(img, 0, 0);
-  };
-}
-
 const inputColorCurrent = document.getElementById('colorPicker');
 const pencil = document.getElementById('pencil');
 const bucket = document.getElementById('bucket');
@@ -32,7 +23,17 @@ let pixelHeight = checked.dataset.size;
 let cols = canvas.width / pixelWidth;
 let rows = canvas.height / pixelHeight;
 let pixelColor = inputColorCurrent.value;
+let coordsLastImage = null;
 let mouse = [];
+
+const dataURL = localStorage.getItem('canvasStorage');
+if (dataURL !== null) {
+  const img = new Image();
+  img.src = dataURL;
+  img.onload = () => {
+    context.drawImage(img, 0, 0);
+  };
+}
 
 // ////////////////////////////////////////////////////////
 // ////////////////////////////////////////////////////////
@@ -241,15 +242,35 @@ async function getLinkToImage() {
     const img = new Image();
     img.crossOrigin = 'Anonymous';
     img.src = data.urls.small;
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    img.onload = () => {
+    if(coordsLastImage !== null) {
+      context.clearRect(coordsLastImage[0], coordsLastImage[1], coordsLastImage[2], coordsLastImage[3]);
+    }    
+    img.onload = (e) => {
+      let coordsX;
+      let coordsY;
+      let width;
+      let height;
       if (img.width === img.height) {
         context.drawImage(img, (canvas.width - img.width) / 2, (canvas.width - img.height) / 2);
+        coordsX = (canvas.width - img.width) / 2;
+        coordsY = (canvas.width - img.height) / 2
+        width = img.width;
+        height = img.height;
       } else if (img.width > img.height) {
         context.drawImage(img, 0, (canvas.width - img.height) / 2, canvas.width, img.height);
+        coordsX = 0;
+        coordsY = (canvas.width - img.height) / 2;
+        width = canvas.width;
+        height = img.height;
       } else if (img.width < img.height) {
         context.drawImage(img, (canvas.width - img.width) / 2, 0, img.width, canvas.height);
+        coordsX = (canvas.width - img.width) / 2;
+        coordsY = 0;
+        width = img.width;
+        height = canvas.height;
       }
+      coordsLastImage = [coordsX, coordsY, width, height];
+      localStorage.setItem('canvasStorage', canvas.toDataURL());
     };
   } catch (e) {
     throw new TypeError(e);
