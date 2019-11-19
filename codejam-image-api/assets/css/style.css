@@ -197,7 +197,18 @@ html {
     height: 18px;
     top: 2px;
     left: -30px;
-    background-image: url("../icons/choosecolor.svg");
+    background-image: url("../icons/edit.svg");
+    background-repeat: no-repeat;
+}
+
+.tools-list .choose-color::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 18px;
+    top: 2px;
+    left: -30px;
+    background-image: url("../icons/choose.svg");
     background-repeat: no-repeat;
 }
 

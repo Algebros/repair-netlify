@@ -2,6 +2,8 @@ const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 canvas.width = 512;
 canvas.height = 512;
+context.fillStyle = "white";
+context.fillRect(0, 0, canvas.width, canvas.height);
 
 const dataURL = localStorage.getItem('canvasStorage');
 if (dataURL !== null) {
@@ -20,8 +22,10 @@ const colorPalette = document.getElementById('colorPalette');
 const blackWhite = document.getElementById('blackWhite');
 const uploaderRequest = document.getElementById('uploaderRequest');
 const uploaderButton = document.getElementById('uploaderButton');
+const cleanerCC = document.getElementById('cleanerCC');
 const listSize = document.querySelector('.list-size');
 const checked = document.querySelector('.list-size .item.checked');
+
 
 let pixelWidth = checked.dataset.size;
 let pixelHeight = checked.dataset.size;
@@ -82,7 +86,7 @@ function render(event) {
     const arr = calcStraightLine([mouse[0], mouse[1]], current);
     for (let i = 0; i < arr.length; i += 1) {
       context.fillStyle = pixelColor;
-      context.fillRect(arr[i][0] * pixelWidth, arr[i][1] * pixelWidth, pixelWidth, pixelWidth);
+      context.fillRect(arr[i][0] * pixelWidth, arr[i][1] * pixelHeight, pixelWidth, pixelHeight);
     }
     mouse = [current[0], current[1]];
   }
@@ -93,6 +97,11 @@ function startDrawing(event) {
     canvas.addEventListener('mousemove', render);
 
     canvas.addEventListener('mouseup', () => {
+      canvas.removeEventListener('mousemove', render);
+      mouse = [];
+    });
+
+    canvas.addEventListener('mouseout', () => {
       canvas.removeEventListener('mousemove', render);
       mouse = [];
     });
@@ -285,4 +294,10 @@ listSize.addEventListener('click', (event) => {
 
 document.addEventListener('click', () => {
   localStorage.setItem('canvasStorage', canvas.toDataURL());
+});
+
+
+cleanerCC.addEventListener('click', () => {
+  localStorage.removeItem('canvasStorage');
+  context.clearRect(0, 0, canvas.width, canvas.height);
 });
