@@ -31,7 +31,7 @@ const localTextArea = localStorage.getItem('textarea');
 textNote.setAttribute('rows', '15');
 textNote.setAttribute('cols', '100');
 textNote.setAttribute('id', 'textNode');
-textNote.textContent = JSON.parse(localTextArea);
+textNote.textContent = localTextArea;
 body.append(textNote);
 
 virtKeyboard.setAttribute('id', 'virtKeyboard');
@@ -184,8 +184,7 @@ function textInput(e) {
         break;
     }
   }
-  const json = JSON.stringify(textNode.textContent);
-  localStorage.setItem('textarea', json);
+  localStorage.setItem('textarea', textNode.textContent);
 }
 
 function mouseTextInput(e) {
