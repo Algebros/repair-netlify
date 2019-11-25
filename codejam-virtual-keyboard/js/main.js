@@ -16,7 +16,7 @@ const arrRus = [
 ];
 
 // кнопки которые не нужно выводить в textarea
-const ignoreChar = ['Backspace', 'Enter', 'CapsLock', 'Shift', 'Ctrl', 'Tab', 'Alt', 'ContextMenu', ' ', 'Win', 'Cnt', 'Control', 'Meta', 'Space'];
+const ignoreChar = ['ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown', 'Backspace', 'Enter', 'CapsLock', 'Shift', 'Ctrl', 'Tab', 'Alt', 'ContextMenu', ' ', 'Win', 'Cnt', 'Control', 'Meta', 'Space'];
 
 // //////////////////////////////////////////////////////////////////////////
 // Создаем textarea и button очистки textarea, также шаблон самой клавиатуры
