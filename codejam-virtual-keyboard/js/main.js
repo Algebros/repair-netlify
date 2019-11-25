@@ -223,11 +223,8 @@ virtKeyboard.addEventListener('mouseup', mouseTextInput);
 
 function backSpace(e) {
   const textNode = document.getElementById('textNode');
-  if (e.target.textContent === 'Backspace') {
-    textNode.innerText = textNode.textContent.substr(0, textNode.textContent.length - 1);
-  } else if (e.key === 'Backspace') {
-    textNode.innerText = textNode.textContent.substr(0, textNode.textContent.length - 1);
-  }
+  const target = e.target.textContent === 'Backspace' || e.key === 'Backspace';
+  if (target) textNode.innerText = textNode.textContent.substr(0, textNode.textContent.length - 1);
 }
 
 document.addEventListener('keyup', backSpace);
