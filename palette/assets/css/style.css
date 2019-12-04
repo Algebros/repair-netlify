@@ -151,6 +151,7 @@ html {
 .interface .item,
 .additional-interface .item {
     display: flex;
+    width: 100%;
     justify-content: space-around;
     margin-bottom: 20px;
     cursor: pointer;
@@ -351,4 +352,8 @@ html {
 
 .choose-color {
     cursor: url("../icons/cursor/pipette.svg");
+}
+
+.active {
+    background-color: #77d082;
 }
