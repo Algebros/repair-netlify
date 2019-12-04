@@ -2,9 +2,15 @@ const canvas = document.getElementById('canvas');
 canvas.width = 512;
 canvas.height = 512;
 
+const colorPicker = document.getElementById('colorPicker');
+const pencil = document.getElementById('pencil');
+const bucket = document.getElementById('bucket');
+const chooseColor = document.getElementById('chooseColor');
+const colorPalette = document.getElementById('colorPalette');
+
 const pixelWidth = 128;
 const pixelHeight = 128;
-let pixelColor = '#000000';
+let pixelColor = colorPicker.value;
 let mouse = null;
 
 const localSt = localStorage.getItem('currentState');
@@ -12,12 +18,6 @@ const arr = JSON.parse(localSt) || [];
 const cols = canvas.width / pixelWidth;
 const rows = canvas.height / pixelHeight;
 const ctx = canvas.getContext('2d');
-
-const colorPicker = document.getElementById('colorPicker');
-const pencil = document.getElementById('pencil');
-const bucket = document.getElementById('bucket');
-const chooseColor = document.getElementById('chooseColor');
-const colorPalette = document.getElementById('colorPalette');
 
 function grid(color = 'white') {
   for (let i = 0; i < rows; i += 1) {
@@ -222,3 +222,18 @@ canvas.addEventListener('mousemove', recordMouseMovement);
 
 // ////////////////////////////////////////////////////////
 // ////////////////////////////////////////////////////////
+
+const chooseColorRed = document.querySelector('div.color.first');
+const chooseColorBlue = document.querySelector('div.color.second');
+let lastCol = colorPicker.value;
+document.addEventListener('click', (e) => {
+  if (e.target === chooseColorRed || e.target === chooseColorBlue) {
+    const prevColor = document.querySelector('.prev-color .color');
+    const choseCol = e.target.dataset.color;
+
+    prevColor.style.backgroundColor = lastCol;
+
+    colorPicker.value = choseCol;
+    lastCol = choseCol;
+  }
+});

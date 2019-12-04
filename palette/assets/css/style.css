@@ -235,6 +235,10 @@ html {
     background-color: red;
 }
 
+.pallete-list .second {
+    background-color: blue;
+}
+
 /* .act-list .current-color::before {
     content: "";
     position: absolute;
