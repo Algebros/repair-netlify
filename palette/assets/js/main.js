@@ -5,12 +5,10 @@ canvas.height = 512;
 const pixelWidth = 128;
 const pixelHeight = 128;
 let pixelColor = '#000000';
-// const prevPixelColor = '';
 let mouse = null;
 
 const localSt = localStorage.getItem('currentState');
 const arr = JSON.parse(localSt) || [];
-localStorage.removeItem('currentState');
 const cols = canvas.width / pixelWidth;
 const rows = canvas.height / pixelHeight;
 const ctx = canvas.getContext('2d');
