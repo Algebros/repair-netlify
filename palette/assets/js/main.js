@@ -101,6 +101,9 @@ function rgbStringToHex(rgb) {
 }
 
 function palettePicker(e) {
+  const prevColor = document.querySelector('.prev-color .color');
+  prevColor.style.backgroundColor = pixelColor;
+
   const rect = canvas.getBoundingClientRect();
   const x = e.pageX - rect.x;
   const y = e.pageY - rect.y;
