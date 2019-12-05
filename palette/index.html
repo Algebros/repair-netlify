@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/normalize.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <!-- <link rel="stylesheet" href="assets/palette/palette.css"> -->
     <title>Document</title>
 </head>
 <body>
@@ -37,33 +36,38 @@
                 <div class="color-picker">
                     <ul class="act-list">
                         <li class="item current-color"><input id="colorPicker" type="color">Current color</li>
-                        <li class="item prev-color"><div class="color"></div>Prev color</li>
+                        <li class="item prev-color"><div id="aa" class="color"></div>Prev color</li>
                     </ul>
                 </div>
 
                 <div class="palette">
                     <ul class="pallete-list">
-                        <li class="item"><div class="color first" data-color="#ff0000"></div>red</li>
-                        <li class="item"><div class="color second" data-color="#0000ff"></div>blue</li>
+                        <li class="item" data-color="ff0000"><div class="color first"></div>red</li>
+                        <li class="item" data-color="00ff00"><div class="color second"></div>green</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="content">
-            <canvas id="canvas"></canvas>
+            <div class="canvas">
+                <canvas id="canvas"></canvas>
+            </div>
         </div>
 
         <div class="additional-interface">
             <div class="size-map">
                 <ul class="list-size">
-                    <li class="item checked" data-size="0">4x4</li>
+                    <li class="item checked" data-size="1">1</li>
+                    <li class="item" data-size="16">16</li>
+                    <li class="item" data-size="32">32</li>
+                    <li class="item" data-size="64">64</li>
+                    <li class="item" data-size="128">128</li>
                 </ul>
             </div>
         </div>
     </main>
 
-    <script src="assets/js/main.js"></script>
-    <!-- <script src="assets/palette/palette.js"></script> -->
+    <script src="dist/main.js"></script>
 </body>
 </html>

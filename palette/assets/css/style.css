@@ -127,31 +127,32 @@ html {
     display: flex;
     align-items: center;
     flex-direction: column;
+    border-right: 2px solid black;
     width: 20%;
 }
 
 .interface .tools {
     width: 228px;
+    border-bottom: 1px dashed black;
     /* height: 246px; */
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
+    /* -webkit-box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
     -moz-box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
-    box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
+    box-shadow: 0px 0px 5px 0px rgba(161,161,161,1); */
     margin-bottom: 20px;
 }
 
 .interface .color-palette {
     width: 228px;
     /* height: 246px; */
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
+    /* -webkit-box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
     -moz-box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
-    box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
+    box-shadow: 0px 0px 5px 0px rgba(161,161,161,1); */
     margin-bottom: 20px;
 }
 
 .interface .item,
 .additional-interface .item {
     display: flex;
-    width: 100%;
     justify-content: space-around;
     margin-bottom: 20px;
     cursor: pointer;
@@ -173,10 +174,10 @@ html {
     list-style: none;
 }
 
-.interface .tools .tools-list,
+/* .interface .tools .tools-list,
 .interface .color-palette .color-picker {
     border-bottom: 2px solid rgba(196, 196, 196, 0.5);
-}
+} */
 
 .tools-list .bucket::before {
     content: "";
@@ -196,7 +197,18 @@ html {
     height: 18px;
     top: 2px;
     left: -30px;
-    background-image: url("../icons/choosecolor.svg");
+    background-image: url("../icons/edit.svg");
+    background-repeat: no-repeat;
+}
+
+.tools-list .choose-color::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 18px;
+    top: 2px;
+    left: -30px;
+    background-image: url("../icons/choose.svg");
     background-repeat: no-repeat;
 }
 
@@ -232,11 +244,15 @@ html {
 }
 
 .pallete-list .first {
-    background-color: red;
+    background-color: #ff0000;
 }
 
 .pallete-list .second {
-    background-color: blue;
+    background-color: #00ff00;
+}
+
+.pallete-list .third {
+    background-color: #0000ff;
 }
 
 /* .act-list .current-color::before {
@@ -286,7 +302,9 @@ html {
 
 .content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 60%;
 }
 
@@ -300,9 +318,9 @@ html {
 .additional-interface .size-map {
     width: 190px;
     /* height: 246px; */
-    -webkit-box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
+    /* -webkit-box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
     -moz-box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
-    box-shadow: 0px 0px 5px 0px rgba(161,161,161,1);
+    box-shadow: 0px 0px 5px 0px rgba(161,161,161,1); */
     margin-bottom: 20px;
 }
 
@@ -359,5 +377,5 @@ html {
 }
 
 .active {
-    background-color: #77d082;
+    background-color: rgb(154, 212, 99);
 }

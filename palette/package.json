@@ -1,26 +1,30 @@
 {
-  "name": "codejam-palette",
+  "name": "codejam-image-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode development",
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Algebros/codejam-palette.git"
+    "url": "git+https://github.com/Algebros/codejam-image-api.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Algebros/codejam-palette/issues"
+    "url": "https://github.com/Algebros/codejam-image-api/issues"
   },
-  "homepage": "https://github.com/Algebros/codejam-palette#readme",
+  "homepage": "https://github.com/Algebros/codejam-image-api#readme",
   "devDependencies": {
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "mocha": "^6.2.2"
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {}
 }
