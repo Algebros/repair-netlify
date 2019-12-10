@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <div class="main-navigation">
+            <div class="menu"><span class="burger-menu"></span></div>
+            <h1 class="title">CodeJam - Pallete</h1>
+            <div class="properties"><span class="dotted"></span></div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="interface">
+            <div class="tools">
+                <ul class="tools-list">
+                    <li class="item bucket">Paint bucket</li>
+                    <li class="item choose-color">Choose color</li>
+                </ul>
+
+                <ul class="edit-list">
+                    <li class="item move">Move</li>
+                    <li class="item transform">Transform</li>
+                </ul>
+            </div>
+
+            <div class="color-palette">
+                <div class="color-picker">
+                    <ul class="act-list">
+                        <li class="item current-color">Current color</li>
+                        <li class="item prev-color">Prev color</li>
+                    </ul>
+                </div>
+
+                <div class="palette">
+                    <ul class="pallete-list">
+                        <li class="item red">red</li>
+                        <li class="item blue">blue</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <div class="additional-interface">
+            <div class="size-map">
+                <ul class="list-size">
+                    <li class="item checked" data-size="0">image</li>
+                    <li class="item" data-size="4">4*4</li>
+                    <li class="item" data-size="32">32*32</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/main.js"></script>
+
+    <!-- <script>
+        let request = new XMLHttpRequest();
+        request.open("GET", "https://raw.githubusercontent.com/rolling-scopes-school/tasks/master/tasks/stage-2/codejam-canvas/data/4x4.json", false);
+        request.send();
+        let result = JSON.parse(request.responseText);
+        console.log(result);        
+    </script> -->
+</body>
+</html>
