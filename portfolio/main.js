@@ -73,8 +73,3 @@ function toggler(e) {
 }
 
 document.addEventListener('click', toggler);
-
-back.addEventListener('click', (e)=>{
-    location.reload(true)
-
-})
