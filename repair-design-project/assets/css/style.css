@@ -317,7 +317,7 @@ img {
 .projects .projects-slider .list-images .item {
   margin-right: 20px;
 }
-.projects .projects-slider .list-images .item:nth-child(2) {
+.projects .projects-slider .list-images .item:last-child {
   margin-right: 0;
 }
 .projects .projects-slider .list-images .button-left {
