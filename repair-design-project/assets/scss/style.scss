@@ -19,11 +19,27 @@ img {
     font-family: 'FuturaDemiC';
     font-size: $font-small;
     line-height: 15px;
-    color: #E3B873;
+    color: #e3b873;
     text-align: center;
     text-decoration: none;
     border: 1px solid transparent;
     border-radius: 2px;
+    background-color: #E3B873;
+}
+
+.btn:hover {
+    background-color: rgb(185, 150, 93);
+}
+
+.btn:active {
+    animation: shadow  0.5s infinite ease-in-out;
+}
+
+@keyframes shadow {
+    from {transform: rotate(0deg);}
+    30% {transform: rotate(1deg);}
+    60% {transform: rotate(-1deg);}
+    to {transform: rotate(0deg);}
 }
 
 .wrap {
@@ -84,7 +100,8 @@ padding-left: 82px;
     color: #fff;
     padding: 10px 30px;
     border: 1px solid #E3B873;
-    background-color: #E3B873;
+    // background-color: #E3B873;
+    // fatal
 }
 }
 
@@ -138,14 +155,20 @@ display: flex;
     
             .promo-title {
                 font-family: 'Yeseva One';
+                font-weight: 100;
                 font-size: 40px;
                 text-transform: uppercase;
                 color: #fff;
                 margin-bottom: 20px;
+
+                .city {
+                    color: #E3B873;
+                }
             }
     
             .description {
                 font-family: 'FuturaBookC';
+                font-weight: 100;
                 font-size: 22px;
                 color: #fff;
                 padding: 0;
@@ -163,7 +186,8 @@ display: flex;
                 &:first-child {
                     color: #fff;
                     border: 1px solid #E3B873;
-                    background-color: #E3B873;
+                    // background-color: #E3B873;
+                    // fatal
                 }
 
                 &:last-child {
@@ -173,6 +197,7 @@ display: flex;
 
             .btn-submit-app {
                 border: 1px solid #fff;
+                background-color: transparent;
             }
         }
     
@@ -187,7 +212,7 @@ display: flex;
             bottom: -50px;
             background-color: #131313;
 
-            .btn {      
+            .scroll-down {      
                 font-family: "Yeseva One";
                 font-style: normal;
                 font-weight: normal;
@@ -195,6 +220,7 @@ display: flex;
                 font-size: $font-small;
                 line-height: 19px;
                 text-transform: uppercase;
+                text-decoration: none;
                 border: none;
 
                 &::after {
@@ -207,6 +233,10 @@ display: flex;
                     height: 30px;
                     background-image: url("../img/arrow-down.svg");
                     background-repeat: no-repeat;
+                }
+
+                &:hover {
+                    text-decoration: underline;
                 }
             }
         }
@@ -291,6 +321,10 @@ display: flex;
             background-repeat: no-repeat;
             margin-right: 15px;
             cursor: pointer;
+
+            &:hover {
+                transform: translate(-5px);
+            }
         }
 
         .right-arrow {
@@ -299,6 +333,10 @@ display: flex;
             background-image: url("../img/right-arrow.svg");
             background-repeat: no-repeat;
             cursor: pointer;
+
+            &:hover {
+                transform: translate(5px);
+            }
         }
 
         .dotted {
@@ -316,6 +354,10 @@ display: flex;
 
                 &:last-child {
                     margin-right: 0;
+                }
+
+                &:hover {
+                    transform: scale(1.5);
                 }
             }
         }
@@ -389,6 +431,10 @@ display: flex;
                 border-radius: 50%;
                 cursor: pointer;
 
+                &:hover {
+                    transform: translate(-5px);
+                }
+
                 &::before {
                     content: "";
                     position: absolute;
@@ -421,6 +467,10 @@ display: flex;
                 background-color: #E3B873;
                 border-radius: 50%;
                 cursor: pointer;
+
+                &:hover {
+                    transform: translate(5px);
+                }
 
                 &::before {
                     content: "";
@@ -551,12 +601,17 @@ display: flex;
             padding-top: 20px;
             border: none;
             border-bottom: 1px solid rgba(54, 54, 54, 0.3);
+
+            &::placeholder {
+                color: #fff;
+            }
         }
 
         .btn {
             color: #fff;
             border: 1px solid #E3B873;
-            background-color: #E3B873;
+            // background-color: #E3B873;
+            // fatal
             text-transform: uppercase;
             width: 200px;
             height: 40px;
@@ -703,7 +758,8 @@ display: flex;
                     width: 228px;
                     height: 54px;
                     color: #fff;
-                    background-color: #E3B873;
+                    // background-color: #E3B873;
+                    // fatal
                     font-family: 'Yeseva One';
                     font-style: normal;
                     font-weight: normal;
@@ -837,7 +893,8 @@ display: flex;
                     width: 213px;
                     height: 51px;
                     color: #fff;
-                    background-color: #E3B873;
+                    // background-color: #E3B873;
+                    // fatal 
                     font-family: 'FuturaDemiC';
                     font-size: $font-small;
                     line-height: 18px;
@@ -1087,7 +1144,8 @@ display: flex;
                 width: 213px;
                 height: 50px;
                 color: #fff;
-                background-color: #E3B873;
+                // background-color: #E3B873;
+                // fatal
             }
         }
     }
@@ -1171,6 +1229,10 @@ display: flex;
                 background-repeat: no-repeat;
                 margin-right: 15px;
                 cursor: pointer;
+
+                &:hover {
+                    transform: translate(-5px);
+                }
             }
     
             .right-arrow {
@@ -1179,6 +1241,10 @@ display: flex;
                 background-image: url("../img/right-arrow.svg");
                 background-repeat: no-repeat;
                 cursor: pointer;
+
+                &:hover {
+                    transform: translate(5px);
+                }
             }
     
             .dotted {
@@ -1193,6 +1259,10 @@ display: flex;
                     background-color: #fff;
                     margin-right: 15px;
                     cursor: pointer;
+
+                    &:hover {
+                        transform: scale(1.5);
+                    }
     
                     &:last-child {
                         margin-right: 0;
@@ -1363,7 +1433,8 @@ display: flex;
                 width: 100%;
                 height: 50px;
                 color: #fff;
-                background-color: #E3B873;
+                // background-color: #E3B873;
+                // fatal
                 border: none;
             }
 
@@ -1642,6 +1713,9 @@ display: flex;
 
                 .q-input {
                     width: 100%;
+                    &::placeholder {
+                        color: #fff;
+                    }
                 }
 
                 &:last-child {
@@ -1729,7 +1803,8 @@ display: flex;
             height: 50px;
             margin-top: 15px;
             margin-bottom: 50px;
-            background-color: #E3B873;
+            // background-color: #E3B873;
+            // fatal
         }
     }
 }
@@ -1744,7 +1819,7 @@ display: flex;
     padding-bottom: 50px;
 
     .contact-desc {
-        font-family: Yeseva One;
+        font-family: 'Yeseva One';
         font-style: normal;
         font-weight: normal;
         font-size: $font-large;
@@ -1752,6 +1827,15 @@ display: flex;
         text-align: center;
         text-transform: uppercase;
         color: #E3B873;
+
+        .link {
+            text-decoration: none;
+            color: #E3B873;
+
+            &:hover {
+                color: rgb(155, 125, 78);
+            }
+        }
     }
 
     .links {
@@ -1770,7 +1854,21 @@ display: flex;
             height: 28px;
             border-radius: 50%;
             background-color: #E3B873;
+
+            &:hover {
+                background-color: rgb(185, 150, 93);
+            }
             
+            &:active {
+                animation: socia  0.5s infinite ease-in-out;
+            }
+            
+            @keyframes socia {
+                from {width: 28px; height: 28px;}
+                30% {width: 40px; height: 40px;}
+                60% {width: 35px; height: 35px;}
+                to {width: 28px; height: 28px;}
+            }
         }
     }
 }
@@ -1821,6 +1919,10 @@ display: flex;
 
     .phone-number .link {
         color: #E3B873;
+    }
+
+    .btn {
+        background-color: transparent;
     }
 }
 
@@ -1873,14 +1975,6 @@ display: flex;
     
         .promo {            
             .promo-description {
-        
-                .promo-title {
-                    font-family: 'Yeseva One';
-                    font-size: 40px;
-                    text-transform: uppercase;
-                    color: #fff;
-                    margin-bottom: 20px;
-                }
         
                 .description {
                     font-family: 'FuturaBookC';
@@ -2050,7 +2144,8 @@ display: flex;
                         width: 228px;
                         height: 54px;
                         color: #fff;
-                        background-color: #E3B873;
+                        // background-color: #E3B873;
+                        // fatal
                         font-family: 'Yeseva One';
                         font-style: normal;
                         font-weight: normal;
@@ -2126,7 +2221,8 @@ display: flex;
                         width: 213px;
                         height: 51px;
                         color: #fff;
-                        background-color: #E3B873;
+                        // background-color: #E3B873;
+                        // fatal
                         font-family: 'FuturaDemiC';
                         font-size: $font-small * $coefficient;
                         line-height: 18px;
@@ -2231,7 +2327,8 @@ display: flex;
                     width: 213px;
                     height: 50px;
                     color: #fff;
-                    background-color: #E3B873;
+                    // background-color: #E3B873;
+                    // fatal
                 }
             }
         }
@@ -2386,7 +2483,8 @@ display: flex;
                     width: 213px;
                     height: 50px;
                     color: #fff;
-                    background-color: #E3B873;
+                    // background-color: #E3B873;
+                    // fatal
                 }
             }
         }
@@ -2555,7 +2653,8 @@ display: flex;
                 height: 50px;
                 margin-top: 15px;
                 margin-bottom: 50px;
-                background-color: #E3B873;
+                // background-color: #E3B873;
+                // fatal
             }
         }
     }
@@ -3017,6 +3116,10 @@ img {
             border-radius: 50%;
             cursor: pointer;
 
+            &:hover {
+                transform: translate(-5px);
+            }
+
             &::before {
                 content: "";
                 position: absolute;
@@ -3051,6 +3154,10 @@ img {
             border-radius: 50%;
             cursor: pointer;
 
+            &:hover {
+                transform: translate(5px);
+            }
+
             &::before {
                 content: "";
                 position: absolute;
@@ -3079,7 +3186,9 @@ img {
             padding: 0;
             
             .img {
-                max-width: 100%;
+                margin: 0 auto;
+                background-size: cover;
+                width: 440px;
             }
 
             .img {
@@ -3194,6 +3303,15 @@ img {
 
     .contact-desc {
         order: 2;
+
+        .link {
+            text-decoration: none;
+            color: #E3B873;
+
+            &:hover {
+                color: rgb(155, 125, 78);
+            }
+        }
     }
 
     .links {

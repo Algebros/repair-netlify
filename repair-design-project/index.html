@@ -41,12 +41,12 @@
 
         <section class="header-promo">
             <div class="social">
-                <a class="link" href="#">INSTAGRAM</a>
+                <a class="link" href="https://www.instagram.com/" target="_blank">INSTAGRAM</a>
             </div>
 
             <div class="promo">
                 <div class="promo-description">
-                    <h2 class="promo-title">Turnkey Repair in the city of Rostov-on-Don</h2>
+                    <h2 class="promo-title">Turnkey Repair in the city of <span class="city">Rostov-on-Don</span></h2>
                     <p class="description">Get ready-made turnkey repairs on time
                         with work time saving up to 45 days and 20% from
                         cost of materials due to the organization of work</p>
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="btn-scroll">
-                    <a class="btn" href="#">Scroll down</a>
+                    <a class="scroll-down" href="#">Scroll down</a>
                 </div>
             </div>
         </section>
@@ -133,15 +133,15 @@
             <form class="online-control-form" action="#">
                 <div class="form-input">
                     <label class="text-lb" for="text-inp-name">Name</label>
-                    <input id="text-inp-name" class="text-inp" type="text" value="What is your name:">
+                    <input id="text-inp-name" class="text-inp" type="text" placeholder="What is your name:" required>
                 </div>
 
                 <div class="form-input">
                     <label class="tel-lb" for="text-inp-tel">Phone</label>
-                    <input id="text-inp-tel" class="tel-inp" type="tel" value="Your phone number:">
+                    <input id="text-inp-tel" class="tel-inp" type="tel" placeholder="Your phone number:" required>
                 </div>
-                <input class="btn" type="button" value="Submit">
-                <div class="checkbox">
+                <button class="btn">Submit</button>
+                <div class="checkbox">                    
                     <input class="checkbox-inp" id="online-control-checkbox" type="checkbox">
                     <label class="checkbox-text" for="online-control-checkbox">I agree to the processing of personal data</label>
                 </div>
@@ -222,25 +222,24 @@
                     <form class="offer-free-form" action="">
                         <div class="offer-item">
                             <label class="offer-free-label" for="offerName">Name</label>
-                            <input id="offerName" class="offer-free-input" type="text" value="What is your name:">
+                            <input id="offerName" class="offer-free-input" type="text" placeholder="What is your name:" required>
                         </div>
 
                         <div class="offer-item">
                             <label class="offer-free-label" for="offerPhone">Phone</label>
-                            <input id="offerPhone" class="offer-free-input" type="tel" value="Your phone number:">
+                            <input id="offerPhone" class="offer-free-input" type="tel" placeholder="Your phone number:" required>
                         </div>
 
                         <div class="offer-item">
                             <label class="offer-free-label" for="offerEmail">Email</label>
-                            <input id="offerEmail" class="offer-free-input" type="email" value="Your email">
+                            <input id="offerEmail" class="offer-free-input" type="email" placeholder="Your email" required>
                         </div>
 
                         <div class="offer-item-checkbox">
                             <input id="offerCheckbox" class="offer-free-checkbox" type="checkbox">
                             <label class="offer-free-label" for="offerCheckbox">I agree to the processing of personal data</label>
                         </div>
-
-                        <input class="btn" type="button" value="Call the measurer">
+                        <button class="btn">Call the measurer</button>
                     </form>
                 </div>
 
@@ -516,17 +515,17 @@
                 <div class="q-items">
                     <div class="q-item">
                         <label class="q-label" for="questionName">Name</label>
-                        <input id="questionName" class="q-input" type="text" value="What is your name:">
+                        <input id="questionName" class="q-input" type="text" placeholder="What is your name:" required>
                     </div>
 
                     <div class="q-item">
                         <label class="q-label" for="questionPhone">Phone</label>
-                        <input id="questionPhone" class="q-input" type="tel" value="Your phone number:">
+                        <input id="questionPhone" class="q-input" type="tel" placeholder="Your phone number:" required>
                     </div>
 
                     <div class="q-item">
                         <label class="q-label" for="questionQuestion">Question</label>
-                        <input id="questionQuestion" class="q-input" type="text" value="I want to know:">
+                        <input id="questionQuestion" class="q-input" type="text" placeholder="I want to know:" required>
                     </div>
                 </div>
 
@@ -534,13 +533,12 @@
                     <input id="qCheckbox" class="q-checkbox" type="checkbox">
                     <label class="q-checkox-lb" for="qCheckbox">I agree to the processing of personal data</label>
                 </div>
-
-                <input class="btn" type="button" value="Submit">
+                <button class="btn">Submit</button>
             </form>
         </section>
 
         <section class="contact">
-            <p class="contact-desc">Rostov-on-Don, Nansen St., 239 Shopping Center <br> Decorum Tel +7 (928) 768 32 29</p>
+            <p class="contact-desc">Rostov-on-Don, Nansen St., 239 Shopping Center <br> Decorum Tel <a class="link" href="tel:+79287683229">+7 (928) 768 32 29</a></p>
             <div class="links">
                 <a class="mail" href="#"><img class="image" src="assets/img/mail.svg" alt=""></a>
                 <a class="instagram" href="#"><img class="image" src="assets/img/instagram.svg" alt=""></a>
